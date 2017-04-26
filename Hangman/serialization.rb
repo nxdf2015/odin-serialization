@@ -60,8 +60,7 @@ include Serialisation
      begin
         File.open(file,"r"){|f|
           data =  f.read
-          puts data
-        object =   deserialize(data)
+         object =   deserialize(data)
        }
     rescue Exception=>e
       puts "user do not exist " unless  Dir.exist? file
