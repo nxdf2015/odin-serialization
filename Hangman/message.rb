@@ -1,6 +1,16 @@
 class Message
 
    class << self
+     def main
+       puts  %{
+           option:
+             1 - start game
+             2 - restore session
+             3 - quit
+         }
+       end
+
+
      def start
       format %W{ #{"+-"*15}   #{"you must guess a word"} #{"limited to 6 try"}  #{"+-"*15}}
     end
@@ -44,6 +54,6 @@ class Message
     end
 end
 
-
-puts Message.start
-puts Message.request
+#
+# puts Message.start
+# puts Message.request

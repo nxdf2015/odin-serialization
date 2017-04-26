@@ -23,7 +23,7 @@ load("dictionnary.rb")
 
 class Array
 
-  def find_all(letter)
+  def find_letters(letter)
     index = []
     self.each_index do |i| index << i if  self[i] == letter end
     index
@@ -62,7 +62,7 @@ end
 
 
 class Game
-   
+
 
   class << self
      def start
@@ -71,7 +71,7 @@ class Game
   end
 
 
-  def initialize(player = nil , secret = nil, debug = true)
+  def initialize(player = nil , secret = nil, debug = false)
 
     Message.start
     @secret = secret || Dictionnary.random_word.to_s
@@ -119,8 +119,8 @@ end
     intersection = @secret  & word
     valid  = []
     intersection.each do |letter,count|
-      index_secret = @secret.split("").find_all(letter)
-      index_word = word.split("").find_all(letter)
+      index_secret = @secret.split("").find_letters(letter)
+      index_word = word.split("").find_letters(letter)
       # puts %Q[ index_word #{index_word} --- #{index_secret} -- intersecton #{index_word & index_secret}]
       valid << (index_word & index_secret)|| []
       # puts %Q[ letter #{letter} #{index_word} --- #{index_secret}]
@@ -128,15 +128,11 @@ end
     valid =  valid.flatten!.uniq
     invalid =  (0...@secret.length).to_a
     invalid = invalid - valid if valid.length >0
-
     answer = @secret[0..-1]
-    # puts %Q[ #{answer }secret #{@secret} ]
-    # print invalid
     invalid.each do  |index|
-      # print index
       answer[index] = "_"
       end
-    # print answer
+
 
     letter_invalid = invalid.map do |index| word[index] end.join("")
     letter_valid = valid.map do |index| word[index] end.join("")
@@ -153,9 +149,3 @@ end
 
  end
 end
-
-
-
-Game.start
-
-# p "azeraa".split("").find_all("a")

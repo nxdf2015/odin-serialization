@@ -1,7 +1,7 @@
 load "serialization.rb"
 
 class Player
-    include Serialisation
+    
 
    def initialize
      @history  = {invalid: {} , valid: {} }
@@ -11,7 +11,7 @@ class Player
 
    def guess
      gets.chomp
-   
+
    end
 
   def history

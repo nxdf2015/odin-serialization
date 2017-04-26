@@ -7,13 +7,12 @@ module Serialisation
   @@type = YAML
 
   def serialize(obj)
-
       @@type::dump(obj)
   end
 
 
-  def deserialize
-
+  def deserialize data
+     @@type::load(data)
   end
 
 end
@@ -37,8 +36,6 @@ class Storage < Session
   }
  end
 
-
-
 end
 
 
@@ -51,21 +48,24 @@ include Serialisation
 
   end
 
-  def session_object
+  def restore
     find_user unless @name.nil?
   end
 
   def find_user
     object = nil
-    file = %Q[#{@name}+".txt"]
-    #  if  Dir.exist? file
+    file = %Q[#{@name}.txt]
 
-       begin
-       f =open(file){|f|
-        object =   deserialise(f.readlines)
+
+     begin
+        File.open(file,"r"){|f|
+          data =  f.read
+          puts data
+        object =   deserialize(data)
        }
-    rescue Exception
-      puts "error file"
+    rescue Exception=>e
+      puts "user do not exist " unless  Dir.exist? file
+      puts e.message
     end
     object
   end

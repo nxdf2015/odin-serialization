@@ -1,0 +1,8 @@
+--- !ruby/object:Game
+secret: teem
+count: 12
+player: !ruby/object:Player
+  history:
+    :invalid: {}
+    :valid: {}
+  try: 0

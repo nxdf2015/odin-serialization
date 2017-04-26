@@ -1,5 +1,5 @@
 require "open-uri"
- 
+
 class Dictionnary
 
   Path = "http://scrapmaker.com/data/wordlists/twelve-dicts/5desk.txt"
