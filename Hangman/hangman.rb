@@ -1,19 +1,3 @@
-# load a dictionnary
-  #select randomly a word => secret_word  ex :hangman
-# print - * length *secret_word
-# start game :option
- # restore a old game : ask name user and start game
- #start
-    #loop  until number try less than MAX
-      #option
-        #play
-          #:ask user for a valid  word  (same length as secret_word) garesq
-          #save : save game to a file
-        #return answer
-            # letter if valid ex -a-----
-            # print letter use
-
-
 load("message.rb")
 
 load("player.rb")
